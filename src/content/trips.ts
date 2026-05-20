@@ -28,13 +28,16 @@ export const coordination = {
   gearUrl: "https://docs.google.com/",
 } as const;
 
-export const currentTrip: Trip = {
+export const currentTrip: Trip & {
+  coordinationStatus: string;
+} = {
   year: 2026,
   title: "This year",
   locationLabel: "Sierra spine · exact site pending",
   datesLabel: "Labor Day window · confirm in thread",
   coordinates: "38.2° N · 119.5° W · provisional",
   status: "planned",
+  coordinationStatus: "location vote open · dates soft",
   note: "Two vehicles minimum. Fire ban assumed until reversed.",
 };
 

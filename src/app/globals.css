@@ -3,6 +3,7 @@
 :root {
   --paper: #e6e0d2;
   --paper-warm: #ddd6c4;
+  --paper-stain: #d4cbb8;
   --ink: #1a1814;
   --ink-faded: #3d3830;
   --dust: #7a7264;
@@ -28,6 +29,7 @@
   --color-accent: var(--accent);
   --color-paper: var(--paper);
   --color-paper-warm: var(--paper-warm);
+  --color-paper-stain: var(--paper-stain);
   --color-ink: var(--ink);
   --color-ink-faded: var(--ink-faded);
   --color-dust: var(--dust);
@@ -47,6 +49,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans), system-ui, sans-serif;
+  font-feature-settings: "kern" 1, "liga" 1;
 }
 
 ::selection {
@@ -63,8 +66,8 @@ body {
   pointer-events: none;
   position: absolute;
   inset: 0;
-  opacity: 0.14;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  opacity: 0.18;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.6'/%3E%3C/svg%3E");
   mix-blend-mode: multiply;
 }
 
@@ -72,28 +75,68 @@ body {
   background-image: repeating-linear-gradient(
       0deg,
       transparent,
-      transparent 47px,
-      color-mix(in srgb, var(--pine) 8%, transparent) 47px,
-      color-mix(in srgb, var(--pine) 8%, transparent) 48px
+      transparent 51px,
+      color-mix(in srgb, var(--pine) 7%, transparent) 51px,
+      color-mix(in srgb, var(--pine) 7%, transparent) 52px
     ),
     repeating-linear-gradient(
-      90deg,
+      88deg,
       transparent,
-      transparent 47px,
-      color-mix(in srgb, var(--pine) 6%, transparent) 47px,
-      color-mix(in srgb, var(--pine) 6%, transparent) 48px
+      transparent 63px,
+      color-mix(in srgb, var(--pine) 5%, transparent) 63px,
+      color-mix(in srgb, var(--pine) 5%, transparent) 64px
     );
 }
 
+/* Flat, underexposed placeholder — not travel-brochure gradients */
+.photo-surface {
+  background-color: color-mix(in srgb, var(--smoke) 55%, var(--paper-stain));
+  filter: contrast(1.12) saturate(0.62) brightness(0.82);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 14%, transparent),
+    inset 0 -24px 48px color-mix(in srgb, var(--night) 22%, transparent),
+    inset 12px 0 32px color-mix(in srgb, var(--night) 8%, transparent);
+}
+
+.photo-surface--smoke {
+  filter: contrast(1.05) saturate(0.48) brightness(0.78);
+}
+
+.photo-surface--flash {
+  filter: contrast(1.2) saturate(0.55) brightness(0.95);
+}
+
 .evidence-frame {
-  background: linear-gradient(
-    145deg,
-    color-mix(in srgb, var(--ink) 6%, var(--paper-warm)),
-    color-mix(in srgb, var(--pine) 12%, var(--paper))
-  );
-  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent);
+  background-color: var(--paper-stain);
+  box-shadow: 0 1px 0 color-mix(in srgb, var(--ink) 10%, transparent),
+    2px 3px 0 color-mix(in srgb, var(--ink) 6%, transparent);
 }
 
 .caption-rule {
-  border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
+  border-top: 1px solid color-mix(in srgb, var(--ink) 22%, transparent);
+}
+
+.rule-rough {
+  height: 1px;
+  background: color-mix(in srgb, var(--ink) 20%, transparent);
+  transform: scaleX(1.02);
+  transform-origin: left;
+}
+
+.file-stamp {
+  border: 1px solid color-mix(in srgb, var(--rust) 55%, transparent);
+  color: var(--rust);
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  transform: rotate(-2.5deg);
+}
+
+.margin-note {
+  border-left: 2px solid color-mix(in srgb, var(--ember) 40%, transparent);
+  padding-left: 0.85rem;
+}
+
+.atlas-scribble {
+  background-color: color-mix(in srgb, var(--paper-warm) 80%, var(--paper));
+  outline: 1px dashed color-mix(in srgb, var(--ink) 16%, transparent);
+  outline-offset: 4px;
 }
