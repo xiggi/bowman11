@@ -1,10 +1,24 @@
 @import "tailwindcss";
 
 :root {
-  --background: #141210;
-  --foreground: #e6e1d6;
-  --muted: #9a9488;
-  --accent: #c4a574;
+  --paper: #e6e0d2;
+  --paper-warm: #ddd6c4;
+  --ink: #1a1814;
+  --ink-faded: #3d3830;
+  --dust: #7a7264;
+  --smoke: #9c9486;
+  --pine: #2a4538;
+  --pine-deep: #1e3329;
+  --amber: #c48a3a;
+  --ember: #8f5a24;
+  --rust: #6b4a38;
+  --signage: #f2ebe0;
+  --night: #12100e;
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --muted: var(--dust);
+  --accent: var(--amber);
 }
 
 @theme inline {
@@ -12,12 +26,74 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--muted);
   --color-accent: var(--accent);
+  --color-paper: var(--paper);
+  --color-paper-warm: var(--paper-warm);
+  --color-ink: var(--ink);
+  --color-ink-faded: var(--ink-faded);
+  --color-dust: var(--dust);
+  --color-smoke: var(--smoke);
+  --color-pine: var(--pine);
+  --color-pine-deep: var(--pine-deep);
+  --color-amber: var(--amber);
+  --color-ember: var(--ember);
+  --color-night: var(--night);
+  --color-signage: var(--signage);
   --font-sans: var(--font-source-sans);
   --font-serif: var(--font-libre-baskerville);
+  --font-mono: var(--font-ibm-plex-mono);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
+  background: var(--paper);
+  color: var(--ink);
   font-family: var(--font-sans), system-ui, sans-serif;
+}
+
+::selection {
+  background: color-mix(in srgb, var(--amber) 35%, transparent);
+  color: var(--ink);
+}
+
+.grain {
+  position: relative;
+}
+
+.grain::after {
+  content: "";
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  opacity: 0.14;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.55'/%3E%3C/svg%3E");
+  mix-blend-mode: multiply;
+}
+
+.topo-lines {
+  background-image: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 47px,
+      color-mix(in srgb, var(--pine) 8%, transparent) 47px,
+      color-mix(in srgb, var(--pine) 8%, transparent) 48px
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent,
+      transparent 47px,
+      color-mix(in srgb, var(--pine) 6%, transparent) 47px,
+      color-mix(in srgb, var(--pine) 6%, transparent) 48px
+    );
+}
+
+.evidence-frame {
+  background: linear-gradient(
+    145deg,
+    color-mix(in srgb, var(--ink) 6%, var(--paper-warm)),
+    color-mix(in srgb, var(--pine) 12%, var(--paper))
+  );
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--ink) 12%, transparent);
+}
+
+.caption-rule {
+  border-top: 1px solid color-mix(in srgb, var(--ink) 18%, transparent);
 }
