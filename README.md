@@ -18,6 +18,12 @@ npm run build  # production build
 npm run lint   # eslint
 ```
 
-## Deploy
+## Deploy (Vercel)
 
-Push to GitHub and connect the repo to Vercel. No database, auth, or API routes in v1.
+1. [Import the repo](https://vercel.com/new/clone?repository-url=https://github.com/xiggi/bowman11) on Vercel (project name: **bowman11**).
+2. Framework preset: **Next.js** (auto-detected).
+3. Production branch: **main**.
+4. No environment variables required for v1.
+5. Deploy.
+
+No database, auth, or API routes in v1.
